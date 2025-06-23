@@ -86,3 +86,16 @@ void deleteData(SalonNode*& head) {
     cout << "Data berhasil dihapus.\n";
 }
 
+void showData(SalonNode* head) {
+    if (!head) return void(cout << "Belum ada data pelanggan.\n");
+    int no = 1;
+    while (head) {
+        cout << no++ << ". Nama: " << head->nama << "\n   Alamat: " << head->alamat << "\n   Paket:\n";
+        double total = 0;
+        for (auto& p : head->paketDipilih)
+            cout << "     - " << p.namaPaket << " (Rp" << p.harga << ")\n", total += p.harga;
+        cout << "   Total Harga: Rp" << total << "\n\n";
+        head = head->next;
+    }
+}
+
