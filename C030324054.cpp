@@ -99,3 +99,24 @@ void showData(SalonNode* head) {
     }
 }
 
+void updateData(SalonNode* head) {
+    if (!head) return void(cout << "Belum ada data pelanggan.\n");
+    string nama;
+    cout << "Masukkan nama pelanggan yang ingin diupdate: ";
+    getline(cin >> ws, nama);
+    SalonNode* temp = head;
+    while (temp && temp->nama != nama) temp = temp->next;
+    if (!temp) return void(cout << "Pelanggan tidak ditemukan.\n");
+    cout << "Nama pelanggan (enter untuk tidak mengubah): ";
+    string namaBaru; getline(cin, namaBaru);
+    if (!namaBaru.empty()) temp->nama = namaBaru;
+    cout << "Alamat pelanggan (enter untuk tidak mengubah): ";
+    string alamatBaru; getline(cin, alamatBaru);
+    if (!alamatBaru.empty()) temp->alamat = alamatBaru;
+    cout << "Update paket? (y/n): "; char updatePaket; cin >> updatePaket; cin.ignore();
+    if (updatePaket == 'y' || updatePaket == 'Y') {
+        temp->paketDipilih.clear(); pilihPaket(temp->paketDipilih);
+    }
+    cout << "Data berhasil diupdate.\n";
+}
+
