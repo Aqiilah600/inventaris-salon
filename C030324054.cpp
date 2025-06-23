@@ -51,3 +51,19 @@ void addData(SalonNode*& head) {
     cout << "Data berhasil ditambahkan.\n";
 }
 
+void insertAfter(SalonNode*& head) {
+    if (!head) return void(cout << "List masih kosong!\n");
+    string target;
+    cout << "Masukkan nama pelanggan setelah siapa ingin disisipkan: ";
+    getline(cin >> ws, target);
+    SalonNode* temp = head;
+    while (temp && temp->nama != target) temp = temp->next;
+    if (!temp) return void(cout << "Nama tidak ditemukan!\n");
+    SalonNode* baru = new SalonNode;
+    cout << "Nama pelanggan baru: "; getline(cin, baru->nama);
+    cout << "Alamat pelanggan baru: "; getline(cin, baru->alamat);
+    pilihPaket(baru->paketDipilih);
+    baru->next = temp->next; temp->next = baru;
+    cout << "Data berhasil disisipkan setelah " << target << ".\n";
+}
+
