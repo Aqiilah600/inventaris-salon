@@ -67,3 +67,22 @@ void insertAfter(SalonNode*& head) {
     cout << "Data berhasil disisipkan setelah " << target << ".\n";
 }
 
+void deleteData(SalonNode*& head) {
+    if (!head) return void(cout << "List kosong.\n");
+    string target;
+    cout << "Masukkan nama pelanggan yang ingin dihapus: ";
+    getline(cin >> ws, target);
+    if (head->nama == target) {
+        SalonNode* hapus = head;
+        head = head->next;
+        delete hapus;
+        cout << "Data berhasil dihapus.\n";
+        return;
+    }
+    SalonNode *prev = head, *curr = head->next;
+    while (curr && curr->nama != target) prev = curr, curr = curr->next;
+    if (!curr) return void(cout << "Data tidak ditemukan.\n");
+    prev->next = curr->next; delete curr;
+    cout << "Data berhasil dihapus.\n";
+}
+
