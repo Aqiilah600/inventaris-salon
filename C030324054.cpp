@@ -120,3 +120,23 @@ void updateData(SalonNode* head) {
     cout << "Data berhasil diupdate.\n";
 }
 
+int main() {
+    SalonNode* head = nullptr;
+    int pilihan;
+    do {
+        cout << "\n--- MENU ---\n";
+        cout << "1. Tambah Data\n2. Sisip Data Setelah Nama\n3. Hapus Data\n4. Tampilkan Semua Data\n5. Update Data\n6. Keluar\n";
+        cout << "Pilih menu: "; cin >> pilihan;
+        switch (pilihan) {
+            case 1: addData(head); break;
+            case 2: insertAfter(head); break;
+            case 3: deleteData(head); break;
+            case 4: showData(head); break;
+            case 5: updateData(head); break;
+            case 6: cout << "Keluar program.\n"; break;
+            default: cout << "Pilihan tidak valid!\n";
+        }
+    } while (pilihan != 6);
+    while (head) { SalonNode* hapus = head; head = head->next; delete hapus; }
+    return 0;
+}
